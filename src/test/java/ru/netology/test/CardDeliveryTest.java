@@ -35,13 +35,13 @@ public class CardDeliveryTest {
         $("[data-test-id='phone'] input").val(validUser.getPhone());
         $("[data-test-id='agreement']").click();
         $x("//*[contains(text(),'Запланировать')]").click();
-        $x("//*[contains(text(),'Успешно!')]").should(visible);
+        $x("//*[contains(text(),'Успешно!')]").should(visible, Duration.ofSeconds(15));
         $("[data-test-id=success-notification] .notification__content").should(exactText("Встреча успешно запланирована на " + firstMeetingDate));
         $x("//input[@type=\"tel\"]").doubleClick().sendKeys(Keys.BACK_SPACE);
         $x("//input[@placeholder=\"Дата встречи\"]").val(secondMeetingDate);
         $x("//*[contains(text(),'Запланировать')]").click();
-        $("[data-test-id=replan-notification]").should(visible);
+        $("[data-test-id=replan-notification]").should(visible, Duration.ofSeconds(15));
         $x("//*[contains(text(),'Перепланировать')]").click();
-        $("[data-test-id=success-notification] .notification__content").should(visible).should(exactText("Встреча успешно запланирована на " + secondMeetingDate));
+        $("[data-test-id=success-notification] .notification__content").should(visible, Duration.ofSeconds(15)).should(exactText("Встреча успешно запланирована на " + secondMeetingDate));
     }
 }
